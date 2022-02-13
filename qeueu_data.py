@@ -105,14 +105,3 @@ qeueu_items = {
 #     print(k ,' is:',v)
 
 # --------------------------------------------------------------------------------------------
-import os
-from winsound import Beep
-import time
-import datetime
-
-# time.sleep(1)
-Beep(2000,100)
-print('qeueu_data:executed.')
-
-t = datetime.datetime.now()
-print(t.minute,':', t.second,':',str(t.microsecond)[:2])
