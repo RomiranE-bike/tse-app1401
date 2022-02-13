@@ -1,0 +1,267 @@
+ <!-- -*- coding: utf-8 -*- -->
+<!--edited on 1400/11/14  02/03/2022-->
+<!--@author: mahmoud esmaeili-->
+
+{% extends "layout.html" %}
+{% block content %}
+ <div class="qeueu_table">
+<!------------------------------------------------navbar fixed top----------------------------------------->
+<section id="nav_bar">
+<!--<nav class="navbar navbar-default visible-xs">-->
+<!--<div class="container" >-->
+<!--<div class="col-sm-12">-->
+
+<!--<nav class="navbar fixed-top navbar-expand-lg ">-->
+<nav class="navbar transparent navbar-inverse navbar-expand-md navbar-light fixed-top" id="nav-scroll" style="direction:rtl;">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand px-5">داشبورد آنالیز بازار</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mr-auto px-5">
+
+                <a href="{{url_for('market_view')}}" class="nav-item nav-link">نمای بازارها</a>
+                <a href="{{url_for('data_table')}}" class="nav-item nav-link">دیتای بازار</a>
+                <a href="{{url_for('hot_money_table')}}" class="nav-item nav-link">پول هوشمند (جدول)</a>
+                <a href="{{url_for('pe_table')}}" class="nav-item nav-link">نسبت قیمت به درآمد (جدول)</a>
+
+            </div>
+            <!--<form class="d-flex ms-auto">-->
+                <!--<input type="text" class="form-control me-sm-2" placeholder="Search">-->
+                <!--<button type="submit" class="btn btn-outline-primary">Search</button>-->
+            <!--</form>-->
+        </div>
+    </div>
+</nav>
+<!--</div>-->
+<!--</div>-->
+<!--</nav>-->
+</section>
+<!--------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!--------------------------------------------------------------------------------------------------------->
+<section id="qeueu_sum">
+    <div class="row content">
+     <div class ="col-sm-6 col-md-6 col-lg-4">
+         <div class="card top-card">
+             <div class="card-header text-center"> مجموع ارزش درخواست خرید(میلیارد تومن)</div>
+             <!-- Card content -->
+             <div class="card-body  text-center">
+                 <p class="date-time  number ">
+                     {{bourse_status.date}}
+                     {{bourse_status.time}}
+                 </p>
+                 <p class="index number align-self-end">
+                     {{qeueu_items.get('buyer_sum_val')}}
+                 </p>
+             </div>
+         </div>
+     </div>
+
+             <div class ="col-sm-6 col-md-6 col-lg-4">
+         <div class="card top-card">
+             <div class="card-header text-center"> قدرت نسبی درخواست خرید</div>
+             <!-- Card content -->
+             <div class="card-body  text-center">
+                 <p class="date-time  number ">
+                     {{bourse_status.date}}
+                     {{bourse_status.time}}
+                 </p>
+                 <p class="index number align-self-end">
+                     {{qeueu_items.get('power_qeueu_val')}}
+                 </p>
+             </div>
+         </div>
+     </div>
+             <div class ="col-sm-6 col-md-6 col-lg-4">
+         <div class="card top-card">
+             <div class="card-header text-center">مجموع ارزش درخواست فروش(میلیارد تومن)</div>
+             <!-- Card content -->
+             <div class="card-body  text-center">
+                 <p class="date-time  number ">
+                     {{bourse_status.date}}
+                     {{bourse_status.time}}
+                 </p>
+                 <p class="index number align-self-end">
+                     {{qeueu_items.get('seller_sum_val')}}
+                 </p>
+             </div>
+         </div>
+     </div>
+    </div>
+ </section>
+<!---------------------------------------- جدول صف خرید و فروش--------------------------------------------->
+<!-------------------------------------------------qeueu tqble--------------------------------------------->
+<section id="qeueu_data">
+<div class="container py-0">
+<div class="row py-5 text-center"><h4>جدول صف خرید و فروش</h4>
+    <div class="col-lg-12 mx-auto ">
+        <!--<div class ="col-sm-6 col-md-6 col-lg-6">-->
+        <div class="card table-card">
+            <div class="card-header">صف خرید و فروش(تعداد نماد:{{qeueu_items.get('radif_list') |length}} )</div>
+            <!--<div class="card rounded shadow border-0">-->
+            <div class="card-body p-5 bg-white rounded">
+                <div class="table-responsive">
+                    <!--<table id="market_view" style="width:100%" class="table table-striped table-bordered" >-->
+                    <!--<table id="market_view" class="table table-hover table-borderless">-->
+                    <table id="market_view" class="data-table table well table-striped  table-hover text-center table-condensed">
+                        <thead class="thead">
+                        <tr>
+                            <th class='text-center success'>نماد</th>
+                            <th class='text-center success'> خریدار</th>
+                            <th class='text-center success'>حجم </th>
+                            <th class='text-center success'>قیمت </th>
+                            <th class='text-center success'>ارزش</th>
+                            <th class='text-center success'> فروشنده</th>
+                            <th class='text-center success'>حجم </th>
+                            <th class='text-center success'>قیمت </th>
+                            <th class='text-center success'>ارزش</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  dict in qeueu_items.get('radif_list')%}
+                        <tr id="number" dir="ltr">
+                            <td>{{dict.symbol}}</td>
+                            <td>{{dict.buyer}}</td>
+                            <td>{{dict.buyer_vol}}</td>
+                            <td>{{dict.buyer_price}}</td>
+                            <td>{{dict.buyer_val}}</td>
+                            <td>{{dict.seller}}</td>
+                            <td>{{dict.seller_vol}}</td>
+                            <td>{{dict.seller_price}}</td>
+                            <td>{{dict.seller_val}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<!---------------------------------------- جدول صف خرید و فروش--------------------------------------------->
+<!-------------------------------------------------qeueu tqble--------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!--------------------------------------------------------------------------------------------------------->
+<!-------------------------------------------- جدول صف خرید ----------------------------------------------->
+<!-------------------------------------------------buyer qeueu -------------------------------------------->
+<section id="qeueu_buyer">
+<div class="container py-0">
+<div class="row py-5 text-center"><h4>جدول صف خرید </h4>
+    <div class="col-lg-12 mx-auto ">
+        <!--<div class ="col-sm-6 col-md-6 col-lg-6">-->
+        <div class="card table-card">
+            <div class="card-header">صف خرید (تعداد نماد:{{qeueu_items.get('buyer_qeueu') |length}} )</div>
+            <!--<div class="card rounded shadow border-0">-->
+            <div class="card-body p-5 bg-white rounded">
+                <div class="table-responsive">
+                    <!--<table id="market_view" style="width:100%" class="table table-striped table-bordered" >-->
+                    <!--<table id="market_view" class="table table-hover table-borderless">-->
+                    <table id="market_view" class="data-table table well table-striped  table-hover text-center table-condensed">
+                        <thead class="thead">
+                        <tr>
+                            <th class='text-center success'>نماد</th>
+                            <th class='text-center success'> خریدار</th>
+                            <th class='text-center success'>حجم </th>
+                            <th class='text-center success'>قیمت </th>
+                            <th class='text-center success'>ارزش</th>
+                            <th class='text-center success'> فروشنده</th>
+                            <th class='text-center success'>حجم </th>
+                            <th class='text-center success'>قیمت </th>
+                            <th class='text-center success'>ارزش</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  dict in qeueu_items.get('buyer_qeueu')%}
+                        <tr id="number" dir="ltr">
+                            <td>{{dict.symbol}}</td>
+                            <td>{{dict.buyer}}</td>
+                            <td>{{dict.buyer_vol}}</td>
+                            <td>{{dict.buyer_price}}</td>
+                            <td>{{dict.buyer_val}}</td>
+                            <td>{{dict.seller}}</td>
+                            <td>{{dict.seller_vol}}</td>
+                            <td>{{dict.seller_price}}</td>
+                            <td>{{dict.seller_val}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<!-------------------------------------------- جدول صف خرید ----------------------------------------------->
+<!-------------------------------------------------buyer qeueu--------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!--------------------------------------------------------------------------------------------------------->
+<!-------------------------------------------- جدول صف فروش ----------------------------------------------->
+<!-------------------------------------------------seller qeueu ------------------------------------------->
+<section id="qeueu_seller">
+<div class="container py-0">
+<div class="row py-5 text-center"><h4>جدول صف فروش </h4>
+    <div class="col-lg-12 mx-auto ">
+        <!--<div class ="col-sm-6 col-md-6 col-lg-6">-->
+        <div class="card table-card">
+            <div class="card-header">صف فروش (تعداد نماد:{{qeueu_items.get('seller_qeueu') |length}} )</div>
+            <!--<div class="card rounded shadow border-0">-->
+            <div class="card-body p-5 bg-white rounded">
+                <div class="table-responsive">
+                    <!--<table id="market_view" style="width:100%" class="table table-striped table-bordered" >-->
+                    <!--<table id="market_view" class="table table-hover table-borderless">-->
+                    <table id="market_view" class="data-table table well table-striped  table-hover text-center table-condensed">
+                        <thead class="thead">
+                        <tr>
+                            <th class='text-center success'>نماد</th>
+                            <th class='text-center success'> خریدار</th>
+                            <th class='text-center success'>حجم </th>
+                            <th class='text-center success'>قیمت </th>
+                            <th class='text-center success'>ارزش</th>
+                            <th class='text-center success'> فروشنده</th>
+                            <th class='text-center success'>حجم </th>
+                            <th class='text-center success'>قیمت </th>
+                            <th class='text-center success'>ارزش</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  dict in qeueu_items.get('seller_qeueu')%}
+                        <tr id="number" dir="ltr">
+                            <td>{{dict.symbol}}</td>
+                            <td>{{dict.buyer}}</td>
+                            <td>{{dict.buyer_vol}}</td>
+                            <td>{{dict.buyer_price}}</td>
+                            <td>{{dict.buyer_val}}</td>
+                            <td>{{dict.seller}}</td>
+                            <td>{{dict.seller_vol}}</td>
+                            <td>{{dict.seller_price}}</td>
+                            <td>{{dict.seller_val}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<!-------------------------------------------- جدول صف فروش ----------------------------------------------->
+<!-------------------------------------------------seller qeueu-------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!--------------------------------------------------------------------------------------------------------->
+ </div><!-- end of div class=data_table -->
+{% endblock %}<!--end of block-->

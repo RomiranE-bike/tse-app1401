@@ -1,0 +1,252 @@
+{% extends "layout.html" %}
+{% block content %}
+<!--# -*- coding: utf-8 -*- -->
+<!--"""-->
+<!--edited on 1400/11/14  02/03/2022-->
+
+<!--@author: mahmoud esmaeili-->
+<!--"""    -->
+<!----------------------------------------  پول هوشمند --------------------------------------------->
+<!------------------------------------------ hot money chart ------------------------------------->
+<div class="hot_money_chart">
+<!------------------------------------------------------------------------------------------------------->
+<section id="nav_bar">
+<!--<nav class="navbar navbar-default visible-xs">-->
+<!--<div class="container" >-->
+<!--<div class="col-sm-12">-->
+
+<!--<nav class="navbar fixed-top navbar-expand-lg ">-->
+<nav class="navbar transparent navbar-inverse navbar-expand-md navbar-light fixed-top" id="nav-scroll" style="direction:rtl;">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand px-5">داشبورد آنالیز بازار</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mr-auto px-5">
+
+                <a href="{{url_for('market_view')}}" class="nav-item nav-link">نمای بازارها</a>
+                <a href="{{url_for('hot_money_table')}}" class="nav-item nav-link">پول هوشمند بازار(جدول)</a>
+                <a href="{{url_for('neg_pos_chart')}}" class="nav-item nav-link">نماد های مثبت و منفی(چارت)</a>
+                <a href="{{url_for('best_co_chart')}}" class="nav-item nav-link">برترین های صنعت و گروه(چارت)</a>
+                <!--<a href="#group_01" class="nav-item nav-link">گروه1</a>-->
+
+            </div>
+            <!--<form class="d-flex ms-auto">-->
+                <!--<input type="text" class="form-control me-sm-2" placeholder="Search">-->
+                <!--<button type="submit" class="btn btn-outline-primary">Search</button>-->
+            <!--</form>-->
+        </div>
+    </div>
+</nav>
+<!--</div>-->
+<!--</div>-->
+<!--</nav>-->
+</section>
+<!----------------------------------------------------------------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!----------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------پول هوشمند بازار------------------------------------------>
+<section id="market-hot-money">
+<div class="row py-0 text-center"><h4> پول هوشمند بازار</h4>
+            <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند بازار(میلیون تومن):
+                    {{market_average_hotmoney[0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot80" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند بازار(میلیون تومن):
+                    {{market_average_hotmoney[0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot90" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+<!----------------------------------------------------------------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!----------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------hot money group1----------------------------------->
+<section id="hot-money-group1">
+<div class="row py-0 text-center"><h4> پول هوشمند گروه:
+            {{group_hotmoney_items.get('group_name')[0]}}</h4>
+            <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[0][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot81" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[0][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot91" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+<!--------------------------------------------------hot money group1----------------------------------->
+<div class="col-sm-12"><hr></div>
+<!----------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------hot money group2----------------------------------->
+<section id="hot-money-group2">
+<div class="row py-0 text-center"><h4> پول هوشمند گروه:
+            {{group_hotmoney_items.get('group_name')[1]}}</h4>
+            <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[1][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot82" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[1][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot92" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+<!--------------------------------------------------hot money group2----------------------------------->
+<div class="col-sm-12"><hr></div>
+<!----------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------hot money group3----------------------------------->
+<section id="hot-money-group3">
+<div class="row py-0 text-center"><h4> پول هوشمند گروه:
+            {{group_hotmoney_items.get('group_name')[2]}}</h4>
+            <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[2][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot83" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[2][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot93" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+<!--------------------------------------------------hot money group3----------------------------------->
+<div class="col-sm-12"><hr></div>
+<!----------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------hot money group4----------------------------------->
+<section id="hot-money-group4">
+<div class="row py-0 text-center"><h4> پول هوشمند گروه:
+            {{group_hotmoney_items.get('group_name')[3]}}</h4>
+            <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[3][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot84" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[3][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot94" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+<!--------------------------------------------------hot money group4----------------------------------->
+<div class="col-sm-12"><hr></div>
+<!----------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------hot money group5----------------------------------->
+<section id="hot-money-group5">
+<div class="row py-0 text-center"><h4> پول هوشمند گروه:
+            {{group_hotmoney_items.get('group_name')[4]}}</h4>
+            <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[4][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot85" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-12col-md-12 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> میانگین پول هوشمند گروه(میلیون تومن):
+                    {{group_hotmoney_items.get('group_hotmoney_average')[4][0]}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot95" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+<!--------------------------------------------------hot money group5----------------------------------->
+<div class="col-sm-12"><hr></div>
+<!----------------------------------------------------------------------------------------------------->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/scatter_chart.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/top_co_bar_chart.js') }}"></script>
+<section id="market-hot-money-chart">
+<script type="text/javascript">
+// <!-------------------------------------------market hot money-------------------------------------->
+var market_money_name = [{% for dict in hot_money_list %}'{{dict.get("symbol")}}', {% endfor %} ];
+var market_money_value = [{% for dict in hot_money_list %}{{dict.get('hot_money') | int}}, {% endfor %} ];
+
+scatterChart(market_money_name,market_money_value,"myPlot80");
+top_co_barChart(market_money_name,market_money_value,"myPlot90");
+//------------------------------------------------------------------------------------------------------
+// <!-------------------------------------------group hot money----------------------------------------->
+var money_name_group1 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[0] %} '{{dict.get("symbol")}}', {% endfor %} ];
+var money_value_group1 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[0] %} {{dict.get('hot_money') | int}}, {% endfor %} ];
+var money_name_group2 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[1] %} '{{dict.get("symbol")}}', {% endfor %} ];
+var money_value_group2 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[1] %} {{dict.get('hot_money') | int}}, {% endfor %} ];
+var money_name_group3 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[2] %} '{{dict.get("symbol")}}', {% endfor %} ];
+var money_value_group3 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[2] %} {{dict.get('hot_money') | int}}, {% endfor %} ];
+var money_name_group4 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[3] %} '{{dict.get("symbol")}}', {% endfor %} ];
+var money_value_group4 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[3] %} {{dict.get('hot_money') | int}}, {% endfor %} ];
+var money_name_group5 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[4] %} '{{dict.get("symbol")}}', {% endfor %} ];
+var money_value_group5 = [{% for dict in group_hotmoney_items.get('group_hotmoney_list')[4] %} {{dict.get('hot_money') | int}}, {% endfor %} ];
+
+scatterChart(money_name_group1,money_value_group1,"myPlot81");
+top_co_barChart(money_name_group1,money_value_group1,'myPlot91')
+scatterChart(money_name_group2,money_value_group2,"myPlot82");
+top_co_barChart(money_name_group2,money_value_group2,'myPlot92')
+scatterChart(money_name_group3,money_value_group3,"myPlot83");
+top_co_barChart(money_name_group3,money_value_group3,'myPlot93')
+scatterChart(money_name_group4,money_value_group4,"myPlot84");
+top_co_barChart(money_name_group4,money_value_group4,'myPlot94')
+scatterChart(money_name_group5,money_value_group5,"myPlot85");
+top_co_barChart(money_name_group5,money_value_group5,'myPlot95')
+// <!-------------------------------------------group hot money----------------------------------------->
+
+</script>
+</section>
+
+<!----------------------------------------  پول هوشمند گروه--------------------------------------------->
+<!------------------------------------------market hot money chart ------------------------------------->
+</div>
+{% endblock %}<!--end of block-->

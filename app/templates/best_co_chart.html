@@ -1,0 +1,299 @@
+{% extends "layout.html" %}
+{% block content %}
+<!--# -*- coding: utf-8 -*- -->
+<!--"""-->
+<!--edited on 1400/11/14  02/03/2022-->
+
+<!--@author: mahmoud esmaeili-->
+<!--"""    -->
+<!---------------------------------------برترین های صنعت یا گروه----------------------------------------->
+<!----------------------------------------------best co chart ------------------------------------------->
+<div class="best_co_chart">
+<!------------------------------------------------------------------------------------------------------->
+<section id="nav_bar">
+<!--<nav class="navbar navbar-default visible-xs">-->
+<!--<div class="container" >-->
+<!--<div class="col-sm-12">-->
+
+<!--<nav class="navbar fixed-top navbar-expand-lg ">-->
+<nav class="navbar transparent navbar-inverse navbar-expand-md navbar-light fixed-top" id="nav-scroll" style="direction:rtl;">
+<div class="container-fluid">
+    <a href="#" class="navbar-brand px-5">داشبورد آنالیز بازار</a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav mr-auto px-5">
+
+            <a href="{{url_for('market_view')}}" class="nav-item nav-link">نمای بازارها</a>
+            <a href="{{url_for('hot_money_chart')}}" class="nav-item nav-link">پول هوشمند بازار(چارت)</a>
+            <a href="{{url_for('neg_pos_chart')}}" class="nav-item nav-link">نماد های مثبت و منفی(چارت)</a>
+            <a href="{{url_for('pe_chart')}}" class="nav-item nav-link">نسبت قیمت به درآمد (چارت)</a>
+            <!--<a href="#group_01" class="nav-item nav-link">گروه1</a>-->
+
+        </div>
+        <!--<form class="d-flex ms-auto">-->
+            <!--<input type="text" class="form-control me-sm-2" placeholder="Search">-->
+            <!--<button type="submit" class="btn btn-outline-primary">Search</button>-->
+        <!--</form>-->
+    </div>
+</div>
+</nav>
+<!--</div>-->
+<!--</div>-->
+<!--</nav>-->
+</section>
+<!------------------------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<div class="col-sm-12">
+<hr>
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<!------------------------------ چارت ارزش معاملات و پول هوشمند گروه1------------------------------------->
+<!------------------------------------------group_list data chart ok------------------------------------->
+<div class="row py-0 text-center"><h4>ارزش معاملات گروه1:
+    {{group_selected_items.get('group_name')[0]}}</h4>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header">  برترین های گروه:
+                {{group_selected_items.get('group_name')[0]}} </div>
+            <div class="chart chart-box no-padding">
+                <!--<div class="card-body p-0 bg-white rounded">-->
+                <div id="myPlot51" class="plot-responsive" ></div>
+            </div>
+        </div>
+    </div>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header"> ورود و خروج پول گروه:
+                {{group_selected_items.get('group_name')[0]}} </div>
+            <div class="chart chart-box no-padding">
+                <div id="myPlot71" class="responsive-plot" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!------------------------------------------group_list data chart ok------------------------------------->
+<!------------------------------ چارت ارزش معاملات و پول هوشمند گروه1------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<div class="col-sm-12">
+<hr>
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<!-------------------------------------- چارت ارزش معاملات گروه2------------------------------------------->
+<!------------------------------------------group_list data chart ok------------------------------------->
+<div class="row py-0 text-center"><h4>ارزش معاملات گروه2:
+    {{group_selected_items.get('group_name')[1]}}</h4>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header"> برترین های گروه:
+                {{group_selected_items.get('group_name')[1]}} </div>
+            <div class="chart chart-box no-padding">
+            <!--<div class="card-body p-5 bg-white rounded">-->
+                <div id="myPlot52" class="plot-responsive" ></div>
+            </div>
+        </div>
+    </div>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header"> ورود و خروج پول گروه:
+                {{group_selected_items.get('group_name')[1]}} </div>
+            <div class="chart chart-box no-padding">
+                <div id="myPlot72" class="responsive-plot" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------group_list data chart ok------------------------------------->
+<!------------------------------------- چارت ارزش معاملات  گروه2------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<div class="col-sm-12">
+<hr>
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<!-------------------------------------- چارت ارزش معاملات گروه3------------------------------------------->
+<!------------------------------------------group_list data chart ok------------------------------------->
+<div class="row py-0 text-center"><h4>ارزش معاملات گروه1:
+    {{group_selected_items.get('group_name')[2]}}</h4>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header">  برترین های گروه:
+                {{group_selected_items.get('group_name')[2]}} </div>
+            <div class="chart chart-box no-padding">
+            <!--<div class="card-body p-5 bg-white rounded">-->
+                <div id="myPlot53" class="plot-responsive" ></div>
+            </div>
+        </div>
+    </div>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header"> ورود و خروج پول گروه:
+                {{group_selected_items.get('group_name')[2]}} </div>
+            <div class="chart chart-box no-padding">
+                <div id="myPlot73" class="responsive-plot" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------group_list data chart ok------------------------------------->
+<!------------------------------------- چارت ارزش معاملات  گروه3------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<div class="col-sm-12">
+<hr>
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<!-------------------------------------- چارت ارزش معاملات گروه4------------------------------------------->
+<!------------------------------------------group_list data chart ok------------------------------------->
+<div class="row py-0 text-center"><h4>ارزش معاملات گروه4:
+    {{group_selected_items.get('group_name')[0]}}</h4>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header">  برترین های گروه:
+                {{group_selected_items.get('group_name')[3]}} </div>
+            <div class="chart chart-box no-padding">
+            <!--<div class="card-body p-5 bg-white rounded">-->
+                <div id="myPlot54" class="plot-responsive" ></div>
+            </div>
+        </div>
+    </div>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header"> ورود و خروج پول گروه:
+                {{group_selected_items.get('group_name')[3]}} </div>
+            <div class="chart chart-box no-padding">
+                <div id="myPlot74" class="responsive-plot" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------group_list data chart ok------------------------------------->
+<!------------------------------------- چارت ارزش معاملات  گروه4------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<div class="col-sm-12">
+<hr>
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<!-------------------------------------- چارت ارزش معاملات گروه5------------------------------------------->
+<!------------------------------------------group_list data chart ok------------------------------------->
+<div class="row py-0 text-center"><h4>ارزش معاملات گروه5:
+    {{group_selected_items.get('group_name')[4]}}</h4>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header"> برترین های گروه:
+                {{group_selected_items.get('group_name')[4]}} </div>
+            <div class="chart chart-box no-padding">
+            <!--<div class="card-body p-5 bg-white rounded">-->
+                <div id="myPlot55" class="plot-responsive" ></div>
+            </div>
+        </div>
+    </div>
+    <div class ="col-sm-12 col-md-12 col-lg-6">
+        <div class="card chart-card">
+            <div class="card-header"> ورود و خروج پول گروه:
+                {{group_selected_items.get('group_name')[4]}} </div>
+            <div class="chart chart-box no-padding">
+                <div id="myPlot75" class="responsive-plot" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------group_list data chart ok------------------------------------->
+<!------------------------------------- چارت ارزش معاملات  گروه5------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<div class="col-sm-12">
+<hr>
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/best_co_group_pie_chart.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/group_value_bar_chart.js') }}"></script>
+<section id="group-best-co-piechart">
+<script type="text/javascript">
+ // <!-------------------------------------------------group list pie chart---------------------------------------->
+
+
+  var group1_lables = [{% for i in range(group_selected_items.get('group_sort_list')[0]|length) %}
+  '{{group_selected_items.get("group_sort_list")[0][i].get("symbol")}}', {% endfor %} ];
+  var group1_values = [{% for i in range(group_selected_items.get('group_sort_list')[0]|length) %}
+  {{group_selected_items.get('group_sort_list')[0][i].get('value')}}, {% endfor %} ];
+
+  var group2_lables = [{% for i in range(group_selected_items.get('group_sort_list')[1]|length) %}
+  '{{group_selected_items.get("group_sort_list")[1][i].get("symbol")}}', {% endfor %} ];
+  var group2_values = [{% for i in range(group_selected_items.get('group_sort_list')[1]|length) %}
+  {{group_selected_items.get('group_sort_list')[1][i].get('value')}}, {% endfor %} ];
+
+  var group3_lables = [{% for i in range(group_selected_items.get('group_sort_list')[2]|length) %}
+  '{{group_selected_items.get("group_sort_list")[2][i].get("symbol")}}', {% endfor %} ];
+  var group3_values = [{% for i in range(group_selected_items.get('group_sort_list')[2]|length) %}
+  {{group_selected_items.get('group_sort_list')[2][i].get('value')}}, {% endfor %} ];
+
+  var group4_lables = [{% for i in range(group_selected_items.get('group_sort_list')[3]|length) %}
+  '{{group_selected_items.get("group_sort_list")[3][i].get("symbol")}}', {% endfor %} ];
+  var group4_values = [{% for i in range(group_selected_items.get('group_sort_list')[3]|length) %}
+  {{group_selected_items.get('group_sort_list')[3][i].get('value')}}, {% endfor %} ];
+
+  var group5_lables = [{% for i in range(group_selected_items.get('group_sort_list')[4]|length) %}
+  '{{group_selected_items.get("group_sort_list")[4][i].get("symbol")}}', {% endfor %} ];
+  var group5_values = [{% for i in range(group_selected_items.get('group_sort_list')[4]|length) %}
+  {{group_selected_items.get('group_sort_list')[4][i].get('value')}}, {% endfor %} ];
+  // <!-------------------------------------------------group list pie chart---------------------------------------->
+
+  pieChart(group1_lables,group1_values,'myPlot51');
+  pieChart(group2_lables,group2_values,'myPlot52');
+  pieChart(group3_lables,group3_values,'myPlot53');
+  pieChart(group4_lables,group4_values,'myPlot54');
+  pieChart(group5_lables,group5_values,'myPlot55');
+
+  // <!-------------------------------------------------group list pie chart---------------------------------------->
+</script>
+</section>
+<section class="group_value_bar_chart">
+<script type="text/javascript">
+  var group1_lables = [{% for i in range(group_selected_items.get('group_sort_list')[0]|length) %}
+  '{{group_selected_items.get("group_sort_list")[0][i].get("symbol")}}', {% endfor %} ];
+  var group1_values = [{% for i in range(group_selected_items.get('group_sort_list')[0]|length) %}
+  {{group_selected_items.get('group_sort_list')[0][i].get('value')}}, {% endfor %} ];
+  var group1_percent = [{% for i in range(group_selected_items.get('group_sort_list')[0]|length) %}
+  {{group_selected_items.get('group_sort_list')[0][i].get('last_percent')}}, {% endfor %} ];
+
+  var group2_lables = [{% for i in range(group_selected_items.get('group_sort_list')[1]|length) %}
+  '{{group_selected_items.get("group_sort_list")[1][i].get("symbol")}}', {% endfor %} ];
+  var group2_values = [{% for i in range(group_selected_items.get('group_sort_list')[1]|length) %}
+  {{group_selected_items.get('group_sort_list')[1][i].get('value')}}, {% endfor %} ];
+  var group2_percent = [{% for i in range(group_selected_items.get('group_sort_list')[1]|length) %}
+  {{group_selected_items.get('group_sort_list')[1][i].get('last_percent')}}, {% endfor %} ];
+
+  var group3_lables = [{% for i in range(group_selected_items.get('group_sort_list')[2]|length) %}
+  '{{group_selected_items.get("group_sort_list")[2][i].get("symbol")}}', {% endfor %} ];
+  var group3_values = [{% for i in range(group_selected_items.get('group_sort_list')[2]|length) %}
+  {{group_selected_items.get('group_sort_list')[2][i].get('value')}}, {% endfor %} ];
+  var group3_percent = [{% for i in range(group_selected_items.get('group_sort_list')[2]|length) %}
+  {{group_selected_items.get('group_sort_list')[2][i].get('last_percent')}}, {% endfor %} ];
+
+  var group4_lables = [{% for i in range(group_selected_items.get('group_sort_list')[3]|length) %}
+  '{{group_selected_items.get("group_sort_list")[3][i].get("symbol")}}', {% endfor %} ];
+  var group4_values = [{% for i in range(group_selected_items.get('group_sort_list')[3]|length) %}
+  {{group_selected_items.get('group_sort_list')[3][i].get('value')}}, {% endfor %} ];
+  var group4_percent = [{% for i in range(group_selected_items.get('group_sort_list')[3]|length) %}
+  {{group_selected_items.get('group_sort_list')[3][i].get('last_percent')}}, {% endfor %} ];
+
+  var group5_lables = [{% for i in range(group_selected_items.get('group_sort_list')[4]|length) %}
+  '{{group_selected_items.get("group_sort_list")[4][i].get("symbol")}}', {% endfor %} ];
+  var group5_values = [{% for i in range(group_selected_items.get('group_sort_list')[4]|length) %}
+  {{group_selected_items.get('group_sort_list')[4][i].get('value')}}, {% endfor %} ];
+  var group5_percent = [{% for i in range(group_selected_items.get('group_sort_list')[4]|length) %}
+  {{group_selected_items.get('group_sort_list')[4][i].get('last_percent')}}, {% endfor %} ];
+
+
+  barChart(group1_lables,group1_values,group1_percent,'myPlot71')
+  barChart(group2_lables,group2_values,group2_percent,'myPlot72')
+  barChart(group3_lables,group3_values,group3_percent,'myPlot73')
+  barChart(group4_lables,group4_values,group4_percent,'myPlot74')
+  barChart(group5_lables,group5_values,group5_percent,'myPlot75')
+
+
+</script>
+</section>
+</div>
+{% endblock %}<!--end of block-->

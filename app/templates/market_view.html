@@ -1,0 +1,886 @@
+ <!-- -*- coding: utf-8 -*- -->
+
+<!--edited on 1400/11/14  02/03/2022-->
+
+<!--@author: mahmoud esmaeili-->
+
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="market_view">
+<!------------------------------------------------navbar fixed top------------------------------------------->
+<section id="nav_bar">
+<!--<nav class="navbar navbar-default visible-xs">-->
+<!--<div class="container" >-->
+<!--<div class="col-sm-12">-->
+
+<!--<nav class="navbar fixed-top navbar-expand-lg ">-->
+<nav class="navbar transparent navbar-inverse navbar-expand-md navbar-light fixed-top" id="nav-scroll" style="direction:rtl;">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand px-5">داشبورد آنالیز بازار</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mr-auto px-5">
+
+                <a href="{{url_for('market_view')}}" class="nav-item nav-link"> نمای بازارها</a>
+                <a href="{{url_for('data_table')}}" class="nav-item nav-link">دیتای بازار</a>
+                <a href="{{url_for('pe_table')}}" class="nav-item nav-link">نسبت قیمت به درآمد (جدول)</a>
+                <a href="{{url_for('hot_money_table')}}" class="nav-item nav-link">پول هوشمند (جدول)</a>
+
+                <a href="{{url_for('neg_pos_chart')}}" class="nav-item nav-link">نماد های مثبت و منفی (چارت)</a>
+                <a href="{{url_for('best_co_chart')}}" class="nav-item nav-link">برترین های صنعت و گروه (چارت)</a>
+                <a href="{{url_for('hot_money_chart')}}" class="nav-item nav-link">پول هوشمند (چارت)</a>
+                <a href="{{url_for('pe_chart')}}" class="nav-item nav-link">نسبت قیمت به درآمد (چارت)</a>
+
+
+            </div>
+            <!--<form class="d-flex ms-auto">-->
+                <!--<input type="text" class="form-control me-sm-2" placeholder="Search">-->
+                <!--<button type="submit" class="btn btn-outline-primary">Search</button>-->
+            <!--</form>-->
+        </div>
+    </div>
+</nav>
+<!--</div>-->
+<!--</div>-->
+<!--</nav>-->
+</section>
+<!---------------------------------for create left side navbar if you want!---------------------------------->
+<div class="container" >
+    <div class="row content">
+        <div class="col-sm-0 col-md-0 col-lg-0  sidenav hidden-xs clearfix" id="nav"</div>
+        <div id="content-main" class="col-sm-12 col-md-12 col-lg-12"  >
+        <!--space for web site code and main content-->
+        </div><!-- end of row content -->
+   </div><!-- end of row -->
+</div><!-- end of class=container -->
+<!----------------------------------------------شاخص های منتخب----------------------------------------------->
+<!-----------------------------------------------selected-index---------------------------------------------->
+<section id="selected-index">
+    <div id='last_market_view' class="row text-center"><h4> شاخص های منتخب:</h4>
+        <h6> آخرین بروز رسانی:
+            {{last_market_view}}</h6>
+        <div class ="col-sm-6 col-md-6 col-lg-2">
+            <div class="card top-card">
+                <div class="card-header text-center"> کل بورس</div>
+                <!-- Card content -->
+                <div class="card-body  text-center">
+                    <p class="date-time  number ">
+                        <!--{{bourse_status.date}}-->
+                        <!--{{bourse_status.time}}-->
+                        {{index_now.get('last_time')}}
+                    </p>
+                    <p class="index number align-self-end">
+                        {{index_now.get('last_value')[0]}}
+                    </p>
+                    <p id="bourse-color" class="change number align-self-end ">
+                        {{index_now.get('change')[0]}}
+                        {{index_now.get('percent')[0]}}
+                        <i id="bourse-caret"></i>
+                    </p>
+                    <script>
+                        var bourse_change = {{index_now.get('percent')[0]}} ;
+                        if (bourse_change < 0) {
+                            document.getElementById("bourse-color").style.color="#ff4698";
+                            document.getElementById("bourse-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (bourse_change > 0) {
+                            document.getElementById("bourse-color").style.color="#7fe890";
+                            document.getElementById("bourse-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+                    </script>
+
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-2">
+            <div class="card top-card">
+                <div class="card-header text-center "> کل هم وزن</div>
+                <!-- Card content -->
+                <div class="card-body  text-center">
+                    <p class="date-time number">
+                        <!--{{bourse_status.date}}-->
+                        <!--{{bourse_status.time}}-->
+                        {{index_now.get('last_time')}}
+                    </p>
+                    <p class="index number align-self-end">
+                        {{index_now.get('last_value')[1]}}
+                    </p>
+                    <p id="hamvazn-color" class="change number align-self-end  ">
+                        {{index_now.get('change')[1]}}
+                        {{index_now.get('percent')[1]}}
+                        <i id="hamvazn-caret"></i>
+                    </p>
+                    <script>
+                        var hamvazn_change = {{index_now.get('percent')[1]}} ;
+
+                        if (hamvazn_change < 0) {
+                            document.getElementById("hamvazn-color").style.color="#ff4698";
+                            document.getElementById("hamvazn-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (hamvazn_change > 0) {
+                            document.getElementById("hamvazn-color").style.color="#7fe890";
+                            document.getElementById("hamvazn-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-2">
+            <div class="card top-card">
+                <div class="card-header text-center "> کل فرابورس</div>
+                <!-- Card content -->
+                <div class="card-body  text-center">
+                    <p class="date-time number">
+                        <!--{{fara_bourse_status.date_fara}}-->
+                        <!--{{fara_bourse_status.time_fara}}-->
+                        {{index_now.get('last_time')}}
+                    </p>
+                    <p class="index number align-self-end">
+                        {{index_now.get('last_value')[2]}}
+                    </p>
+                    <p  id="fara-color" class="change number align-self-end  ">
+                        {{index_now.get('change')[2]}}
+                        {{index_now.get('percent')[2]}}
+                        <i id="fara-caret"></i>
+                    </p>
+                    <script>
+                        var fara_change = {{index_now.get('percent')[2]}} ;
+
+                        if (fara_change < 0) {
+                            document.getElementById("fara-color").style.color="#ff4698";
+                            document.getElementById("fara-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (fara_change > 0) {
+                            document.getElementById("fara-color").style.color="#7fe890";
+                            document.getElementById("fara-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-2">
+            <div class="card top-card">
+                <div class="card-header text-center "> قیمت</div>
+                <!-- Card content -->
+                <div class="card-body  text-center">
+                    <p class="date-time number">
+                        <!--{{fara_bourse_status.date_fara}}-->
+                        <!--{{fara_bourse_status.time_fara}}-->
+                        {{index_now.get('last_time')}}
+                    </p>
+                    <p class="index number align-self-end">
+                        {{index_now.get('last_value')[3]}}
+                    </p>
+                    <p  id="hamvazn_gheymat-color" class="change number align-self-end  ">
+                        {{index_now.get('change')[3]}}
+                        {{index_now.get('percent')[3]}}
+                        <i id="hamvazn_gheymat-caret"></i>
+                    </p>
+                    <script>
+                        var hamvazn_gheymat_change = {{index_now.get('percent')[3]}} ;
+
+                        if (hamvazn_gheymat_change < 0) {
+                            document.getElementById("hamvazn_gheymat-color").style.color="#ff4698";
+                            document.getElementById("hamvazn_gheymat-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (hamvazn_gheymat_change > 0) {
+                            document.getElementById("hamvazn_gheymat-color").style.color="#7fe890";
+                            document.getElementById("hamvazn_gheymat-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-2">
+            <div class="card top-card">
+                <div class="card-header text-center "> 30 شرکت برتر</div>
+                <!-- Card content -->
+                <div class="card-body  text-center">
+                    <p class="date-time number">
+                        <!--{{fara_bourse_status.date_fara}}-->
+                        <!--{{fara_bourse_status.time_fara}}-->
+                        {{index_now.get('last_time')}}
+                    </p>
+                    <p class="index number align-self-end">
+                        {{index_now.get('last_value')[4]}}
+                    </p>
+                    <p  id="big30co-color" class="change number align-self-end  ">
+                        {{index_now.get('change')[4]}}
+                        {{index_now.get('percent')[4]}}
+                        <i id="big30co-caret"></i>
+                    </p>
+                    <script>
+                        var big30co_change = {{index_now.get('percent')[4]}} ;
+
+                        if (big30co_change < 0) {
+                            document.getElementById("big30co-color").style.color="#ff4698";
+                            document.getElementById("big30co-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (big30co_change > 0) {
+                            document.getElementById("big30co-color").style.color="#7fe890";
+                            document.getElementById("big30co-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-2">
+            <div class="card top-card">
+                <div class="card-header text-center "> 50 شرکت بزرگ</div>
+                <!-- Card content -->
+                <div class="card-body  text-center">
+                    <p class="date-time number">
+                        <!--{{fara_bourse_status.date_fara}}-->
+                        <!--{{fara_bourse_status.time_fara}}-->
+                        {{index_now.get('last_time')}}
+                    </p>
+                    <p class="index number align-self-end">
+                        {{index_now.get('last_value')[5]}}
+                    </p>
+                    <p  id="best50co-color" class="change number align-self-end  ">
+                        {{index_now.get('change')[5]}}
+                        {{index_now.get('percent')[5]}}
+                        <i id="best50co-caret"></i>
+                    </p>
+                    <script>
+                        var best50co_change = {{index_now.get('percent')[5]}} ;
+
+                        if (best50co_change < 0) {
+                            document.getElementById("best50co-color").style.color="#ff4698";
+                            document.getElementById("best50co-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (best50co_change > 0) {
+                            document.getElementById("best50co-color").style.color="#7fe890";
+                            document.getElementById("best50co-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!----------------------------------------------شاخص های منتخب----------------------------------------------->
+<!-----------------------------------------------selected-index---------------------------------------------->
+<div class="col-sm-12"><hr></div>
+ <!------------------------------------------ بازار ارز و رمزارز--------------------------------------------->
+<section id="curency-cryptocurency">
+<div class= "row text-center"><h4> بازار ارز و رمزارز</h4>
+    <!----------------------------------------------------->
+    <div class ="col-sm-6 col-md-6 col-lg-3">
+        <div class="card table-card">
+            <div class="card-header">دلار آزاد</div>
+            <div class="data-box info-box no-padding">
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                    <tr>
+                        <td class="icon"><span class="iconify" data-icon="ant-deicon:dollar-circle-filled"></span></td>
+                        <td class="number"><span class="date-time">
+                            {{tgju_list[0][0]}}
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td> نرخ  دلار آزاد </td>
+                        <td class="number">{{tgju_list[0][1]}}</td>
+                    </tr>
+                    <tr>
+                        <td>نرخ روز گذشته </td>
+                        <td class="number">{{tgju_list[0][2]}}</td>
+                    </tr>
+                    <tr>
+                        <td>مقدار تغییر</td>
+                        <td class="number">{{tgju_list[0][3]}}</td>
+                    </tr>
+                    <tr>
+                        <td>درصد تغییر </td>
+                        <td id="dollar-color" class="number">
+                            {{tgju_list[0][4]}} <i id="dollar-caret"></i></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="https://www.tgju.org/profile/price_dollar_rl" target="_blank">نمایش بیشتر!</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <script>
+                    var dollar_change = {{tgju_list[0][3]}} ;
+
+                    if (dollar_change < 0) {
+                        document.getElementById("dollar-color").style.color="#ff4698";
+                        document.getElementById("dollar-caret").innerHTML =
+                            "<i class='fa fa-caret-down'></i>";
+                    }
+
+                    else if (dollar_change > 0) {
+                        document.getElementById("dollar-color").style.color="#7fe890";
+                        document.getElementById("dollar-caret").innerHTML =
+                            " <i class='fa fa-caret-up'></i> ";
+                    }
+
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class ="col-sm-6 col-md-6 col-lg-3">
+        <div class="card table-card">
+            <div class="card-header">دلار نیما</div>
+            <div class="data-box info-box no-padding">
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                    <tr>
+                        <td class="icon"><span class="iconify" data-icon="emojione:dollar-banknote"></span></td>
+                        <td class="number"><span class="date-time">
+                            {{tgju_list[1][0]}}
+                        </span></td>
+                    </tr>
+
+                    <tr>
+                        <td>نرخ دلار نیما </td>
+                        <td class="number"> {{tgju_list[1][1]}}</td>
+                    </tr>
+                    <tr>
+                        <td> نرخ روز گذشته  </td>
+                        <td class="number">{{tgju_list[1][2]}}</td>
+                    </tr>
+                    <tr>
+                        <td>مقدار تغییر</td>
+                        <td class="number">{{tgju_list[1][3]}}</td>
+                    </tr>
+                    <tr>
+                        <td>درصد تغییر  </td>
+                        <td id="nima-color" class="number">
+                            {{tgju_list[1][4]}} <i id="nima-caret"></i></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="https://www.tgju.org/profile/nima_sell_usd" target="_blank">نمایش بیشتر!</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <script>
+                    var nima_change = {{tgju_list[1][3]}} ;
+
+                    if (nima_change < 0) {
+                        document.getElementById("nima-color").style.color="#ff4698";
+                        document.getElementById("nima-caret").innerHTML =
+                            "<i class='fa fa-caret-down'></i>";
+                    }
+
+                    else if (nima_change > 0) {
+                        document.getElementById("nima-color").style.color="#7fe890";
+                        document.getElementById("nima-caret").innerHTML =
+                            " <i class='fa fa-caret-up'></i> ";
+                    }
+
+                </script>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------------->
+    <div class ="col-sm-6 col-md-6 col-lg-3">
+        <div class="card table-card">
+            <div class="card-header"> بیت کوین</div>
+            <div class="data-box info-box no-padding">
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                    <tr>
+                        <td class="icon"><span class="iconify" data-icon="logos:bitcoin"></span></td>
+                        <td class="number"><span class="date-time">
+                            {{tgju_list[2][0]}}</span></td>
+                    </tr>
+                    <tr>
+                        <td> بیت کوین </td>
+                        <td class="number">{{tgju_list[2][1]}}</td>
+                    </tr>
+                    <tr>
+                        <td>نرخ روز گذشته </td>
+                        <td class="number">{{tgju_list[2][2]}}</td>
+                    </tr>
+                    <tr>
+                        <td>مقدار تغییر</td>
+                        <td class="number">{{tgju_list[2][3]}}</td>
+                    </tr>
+                    <tr>
+                        <td>درصد تغییر </td>
+                        <td id="bit-color" class="number">
+                            {{tgju_list[2][4]}}
+                            <i id="bit-caret"></i></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="https://www.tgju.org/profile/crypto-bitcoin" target="_blank">نمایش بیشتر!</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <script>
+                    var bit_change = {{tgju_list[2][3]}};
+
+                    if (bit_change < 0) {
+                        document.getElementById("bit-color").style.color="#ff4698";
+                        document.getElementById("bit-caret").innerHTML =
+                            "<i class='fa fa-caret-down'></i>";
+                    }
+
+                    else if (bit_change > 0) {
+                        document.getElementById("bit-color").style.color="#7fe890";
+                        document.getElementById("bit-caret").innerHTML =
+                            " <i class='fa fa-caret-up'></i> ";
+                    }
+
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class ="col-sm-6 col-md-6 col-lg-3">
+        <div class="card table-card">
+            <div class="card-header">  اتریوم</div>
+            <div class="data-box info-box no-padding">
+                <table class="table table-hover table-borderless">
+                    <tbody>
+
+                    <tr>
+                        <td class="icon"><span class="iconify" data-icon="logos:ethereum"></span></td>
+                        <td class="number"><span class="date-time">
+                            {{tgju_list[3][0]}}</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>اتریوم </td>
+                        <td class="number">{{tgju_list[3][1]}}</td>
+                    </tr>
+
+                    <tr>
+                        <td> نرخ روز گذشته  </td>
+                        <td class="number">{{tgju_list[3][2]}}</td>
+                    </tr>
+                    <tr>
+                        <td>مقدار تغییر</td>
+                        <td class="number">{{tgju_list[3][3]}}</td>
+                    </tr>
+                    <tr>
+                        <td>درصد تغییر </td>
+                        <td id="ether-color" class="number">
+                            {{tgju_list[3][4]}}
+                            <i id="ether-caret"></i></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="https://www.tgju.org/profile/crypto-ethereum" target="_blank">نمایش بیشتر!</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <script>
+                    var ether_change = {{tgju_list[3][3]}};
+
+                    if (ether_change < 0) {
+                        document.getElementById("ether-color").style.color="#ff4698";
+                        document.getElementById("ether-caret").innerHTML =
+                            "<i class='fa fa-caret-down'></i>";
+                    }
+
+                    else if (ether_change > 0) {
+                        document.getElementById("ether-color").style.color="#7fe890";
+                        document.getElementById("ether-caret").innerHTML =
+                            " <i class='fa fa-caret-up'></i> ";
+                    }
+
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!------------------------------------------ بازار ارز و رمزارز---------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!---------------------------------------------- بازار جهانی------------------------------------------------->
+<section id="world-markets">
+    <div class= "row text-center"><h4> بازار جهانی</h4>
+        <div class ="col-sm-6 col-md-6 col-lg-4">
+            <div class="card table-card">
+                <div class="card-header">اونس جهانی طلا</div>
+                <div class="data-box info-box no-padding">
+                    <table class="table table-hover table-borderless">
+                        <tbody>
+                        <tr>
+                            <td class="icon"><span class="iconify" data-icon="ant-deicon:gold-filled"></span></td>
+                            <td class="number"><span class="date-time">
+                                {{tgju_list[4][0]}}</span></td>
+                        </tr>
+                        <tr>
+                            <td> اونس طلا </td>
+                            <td class="number">{{tgju_list[4][1]}}</td>
+                        </tr>
+                        <tr>
+                            <td>نرخ روز گذشته </td>
+                            <td class="number">{{tgju_list[4][2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>مقدار تغییر</td>
+                            <td class="number">{{tgju_list[4][3]}}</td>
+                        </tr>
+                        <tr>
+                            <td>درصد تغییر </td>
+                            <td id="ons-color" class="number">
+                                {{tgju_list[4][4]}}
+                                <i id="ons-caret"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="https://www.tgju.org/profile/ons" target="_blank">نمایش بیشتر!</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <script>
+                        var ons_change = {{tgju_list[4][3]}};
+
+                        if (ons_change < 0) {
+                            document.getElementById("ons-color").style.color="#ff4698";
+                            document.getElementById("ons-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (ons_change > 0) {
+                            document.getElementById("ons-color").style.color="#7fe890";
+                            document.getElementById("ons-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-4">
+            <div class="card table-card">
+                <div class="card-header">WTI Oil</div>
+                <div class="data-box info-box no-padding">
+                    <table class="table table-hover table-borderless">
+                        <tbody>
+                        <tr>
+                            <td class="icon"><span class="iconify" data-icon="emojione-v1:oil-drum"></span></td>
+                            <td class="number"><span class="date-time">
+                                {{tgju_list[5][0]}}</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>نفت سبک </td>
+                            <td class="number"> {{tgju_list[5][1]}}</td>
+                        </tr>
+
+                        <tr>
+                            <td> نرخ روز گذشته  </td>
+                            <td class="number">{{tgju_list[5][2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>مقدار تغییر</td>
+                            <td class="number">{{tgju_list[5][3]}}</td>
+                        </tr>
+                        <tr>
+                            <td>درصد تغییر </td>
+                            <td id="wti-color" class="number">
+                                {{tgju_list[5][4]}}
+                                <i id="wti-caret"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="https://www.tgju.org/profile/energy-crude-oil" target="_blank">نمایش بیشتر!</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <script>
+                        var wti_change = {{tgju_list[5][3]}};
+
+                        if (wti_change < 0) {
+                            document.getElementById("wti-color").style.color="#ff4698";
+                            document.getElementById("wti-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (wti_change > 0) {
+                            document.getElementById("wti-color").style.color="#7fe890";
+                            document.getElementById("wti-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-4">
+            <div class="card table-card">
+                <div class="card-header">Brent Oil</div>
+                <div class="data-box info-box no-padding">
+                    <table class="table table-hover table-borderless">
+                        <tbody>
+
+                        <tr>
+                            <td class="icon"><span class="iconify" data-icon="noto:oil-drum"></span></td>
+                            <td class="number"><span class="date-time">
+                                {{tgju_list[6][0]}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>نفت برنت </td>
+                            <td class="number"> {{tgju_list[6][1]}}</td>
+                        </tr>
+                        <tr>
+                            <td> نرخ روز گذشته  </td>
+                            <td class="number">{{tgju_list[6][2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>مقدار تغییر</td>
+                            <td class="number">{{tgju_list[6][3]}}</td>
+                        </tr>
+                        <tr>
+                            <td>درصد تغییر </td>
+                            <td id="brent-color" class="number">
+                                {{tgju_list[6][4]}}
+                                <i id="brent-caret"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="https://www.tgju.org/profile/energy-brent-oil" target="_blank">نمایش بیشتر!</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <script>
+                        var brent_change = {{tgju_list[6][3]}};
+
+                        if (brent_change < 0) {
+                            document.getElementById("brent-color").style.color="#ff4698";
+                            document.getElementById("brent-caret").innerHTML =
+                                "<i class='fa fa-caret-down'></i>";
+                        }
+
+                        else if (brent_change > 0) {
+                            document.getElementById("brent-color").style.color="#7fe890";
+                            document.getElementById("brent-caret").innerHTML =
+                                " <i class='fa fa-caret-up'></i> ";
+                        }
+
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- en of all markets-->
+<!----------------------------------------------بازار جهانی-------------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!-----------------------------------------بازار بورس و فرابورس---------------------------------------------->
+<section id="iran-stock-exchange">
+    <div class="row text-center"><h4> بازار بورس و فرابورس </h4>
+        <div class ="col-sm-6 col-md-6 col-lg-6">
+            <div class="card table-card">
+                <div class="card-header">بازار نقدی بورس </div>
+                <div class="card-data info-box no-padding">
+                    <!--<table id="decorate"  class="table  well  table-striped table-hover text-center table-condensed">-->
+                    <table class="table  table-hover table-borderless">
+                        <tbody>
+                        <tr>
+                            <td class="icon"><span class="iconify" data-icon="healthicons:i-schedule-school-date-time"></span></td>
+                            <td class="number"><span class="date-time">
+                                {{bourse_status.date}}
+                                {{bourse_status.time}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td> وضعیت بازار  </td>
+                            <td>{{bourse_status.status}}</td>
+                        </tr>
+                        <tr>
+                            <td> ارزش بازار  </td>
+                            <td class="number"><span class="trade-vol">
+                                {{bourse_status.market_val}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td>تعداد معاملات </td>
+                            <td class="number"><span class="trade-num">
+                                {{bourse_status.trade_num}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td>حجم معاملات </td>
+                            <td class="number"><span class="trade-vol">
+                                {{bourse_status.trade_vol}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td>ارزش معاملات </td>
+                            <td class="number"><span class="trade-val">
+                                {{bourse_status.trade_val}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td> سرانه(میلیون تومن) </td>
+                            <td class="number"><span class="trade-val">
+                                {{bourse_status.saraneh_bourse}}
+                            </span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-6">
+            <div class="card table-card">
+                <div class="card-header">بازار نقدی فرابورس </i></div>
+                <div class="card-data info-box no-padding">
+                    <table class="table table table-hover table-borderless">
+                        <tbody>
+                        <tr>
+                            <td class="icon"><span class="iconify" data-icon="healthicons:i-schedule-school-date-time"></span> </td>
+                            <td class="number"><span class="date-time ">
+                                {{fara_bourse_status.date_fara}}
+                                {{fara_bourse_status.time_fara}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td> وضعیت بازار  </td>
+                            <td>{{fara_bourse_status.status_fara}}</td>
+                        </tr>
+                        <tr>
+                            <td> ارزش بازار  </td>
+                            <td class="number"><span class="trade-vol">
+                                {{fara_bourse_status.market_val_fara}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td>تعداد معاملات </td>
+                            <td class="number"><span class="trade-num">
+                                {{fara_bourse_status.trade_num_fara}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td>حجم معاملات </td>
+                            <td class="number"><span class="trade-vol">
+                                {{fara_bourse_status.trade_vol_fara}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td>ارزش معاملات </td>
+                            <td class="number"><span class="trade-val">
+                                {{fara_bourse_status.trade_val_fara}}
+                            </span></td>
+                        </tr>
+                        <tr>
+                            <td> سرانه(میلیون تومن) </td>
+                            <td class="number"><span class="trade-val">
+                                {{fara_bourse_status.saraneh_fara}}
+                            </span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-----------------------------------------بازار بورس و فرابورس---------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!------------------------------------------نماد های مثبت منفی----------------------------------------------->
+<section id="market-neg-pos">
+    <div class= "row text-center"><h4> نماد های مثبت و منفی</h4>
+        <div class ="col-sm-6 col-md-6 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> بورس </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot1" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> فرابورس </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot2" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--------------------------------------------نماد های مثبت منفی----------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!------------------------------------ نماد های مثبت و منفی بازار----------------------------------------->
+    <!------------------------------------ negtive or posetive stock in market ------------------------------->
+    <div class= "row text-center"><h4> نماد های مثبت و منفی بازار</h4>
+        <div class ="col-sm-6 col-md-6 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> تعداد نمادهای بازار: {{market_list|length}} </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot8" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header">  پراکندگی مثبت ومنفی بازار  </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot9" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-------------------------------------- negtive or posetive stock in market -------------------------------->
+<!------------------------------------ نماد های مثبت و منفی بازار ------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!-------------------------------------------برترین های صنعت ------------------------------------------------>
+ <section id="market-best-co">
+    <div class= "row text-center"><h4> برترین های صنعت </h4>
+        <div class ="col-sm-6 col-md-6 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> جریان نقدی 10 صنعت برتر امروز </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot3" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6 col-md-6 col-lg-6">
+            <div class="card chart-card">
+                <div class="card-header"> ارزش معاملات 10 صنعت برتر امروز </div>
+                <div class="chart chart-box no-padding">
+                    <div id="myPlot4" class="responsive-plot" ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+    <!-------------------------------------------برترین های صنعت -------------------------------------------->
+<!----------------------------------------------------------------------------------------------------------->
+<div class="col-sm-12"><hr></div>
+<!----------------------------------------------------------------------------------------------------------->
+
+</div><!-- end of div class=market_view -->
+{% endblock %}<!--end of block-->
+
+
+
+
