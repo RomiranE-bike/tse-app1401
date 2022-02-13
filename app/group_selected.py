@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-edited on 1400/11/09 ---- 01/29/2022
-
-@author: mahmoud esmaeili
-"""
+# # -*- coding: utf-8 -*-
+# """
+# edited on 1400/11/09 ---- 01/29/2022
+#
+# @author: mahmoud esmaeili
+# """
 
 import market_data
 import best_co

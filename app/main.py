@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-edited on 1400/11/14 ---- 02/03/2022
+# # -*- coding: utf-8 -*-
+# """
+# edited on 1400/11/14 ---- 02/03/2022
+#
+# @author: mahmoud esmaeili
+# """
 
-@author: mahmoud esmaeili
-"""
-from flask import Flask, render_template
 import time
 import threading
 
@@ -45,7 +45,7 @@ top_ten_co = best_co.top_ten_co
 
 last_update = time.ctime()
 
-
+from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')
@@ -301,7 +301,7 @@ def qeueu_table():
                 qeueu_items = qeueu_items
                 )
 
-#if __name__ == '__main__':
-       #app.run(debug=True)
+# if __name__ == '__main__':
+#        app.run(debug=True)
 
 # --------------------------------------------------------------------

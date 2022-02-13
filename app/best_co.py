@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on 1400/10/06 ---- 12/27/2021
-
-@author: mahmoud esmaeili
-"""
+# # -*- coding: utf-8 -*-
+# """
+# Created on 1400/10/06 ---- 12/27/2021
+#
+# @author: mahmoud esmaeili
+# """
 
 from bs4 import BeautifulSoup
 import requests

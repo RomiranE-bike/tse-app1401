@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-edited on 1400/11/10 ---- 01/30/2022
-
-@author: mahmoud esmaeili
-"""
+# # -*- coding: utf-8 -*-
+# """
+# edited on 1400/11/10 ---- 01/30/2022
+#
+# @author: mahmoud esmaeili
+# """
 from market_data import*
 
 # ------------------------------------------market split to group---------------------------------------
