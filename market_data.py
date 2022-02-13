@@ -171,14 +171,3 @@ market_posetive_percent = market_sign[3]
 
 # -------------------------------------------------------------------------------------------------------
 
-import os
-from winsound import Beep
-import time
-import datetime
-
-# time.sleep(1)
-Beep(2000,100)
-print('market_data:executed.')
-
-t = datetime.datetime.now()
-print(t.minute,':', t.second,':',str(t.microsecond)[:2])
