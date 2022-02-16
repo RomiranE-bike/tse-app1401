@@ -9,17 +9,59 @@ root{
     --color7:#1FB393;
 
 }
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+/*--------------------------------------------------------------layout style----------------------------------*/
+/*--------------------------------------------------------------font style----------------------------------*/
+@font-face {
     font-family: iranyekan;
+    font-style: normal;
+    font-weight: 700;
+    src: url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/eot/iranyekanwebbold(fanum).eot");
+    src: url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/eot/iranyekanwebbold(fanum).eot?#iefix")
+    format("embedded-opentype"),
+    url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/woff2/iranyekanwebbold(fanum).woff2")
+    format("woff2"),
+    url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/woff/iranyekanwebbold(fanum).woff")
+    format("woff"),
+    url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/ttf/iranyekanwebbold(fanum).ttf")
+    format("truetype")
+}
+
+@font-face {
+    font-family: iranyekan;
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/eot/iranyekanwebregular(fanum).eot");
+    src: url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/eot/iranyekanwebregular(fanum).eot?#iefix") format("embedded-opentype"), url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/woff2/iranyekanwebregular(fanum).woff2") format("woff2"), url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/woff/iranyekanwebregular(fanum).woff") format("woff"), url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/ttf/iranyekanwebregular(fanum).ttf") format("truetype")
+}
+
+@font-face {
+    font-family: fontawesome;
+    src: url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.eot");
+    src: url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3") format("embedded-opentype"), url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.woff") format("woff"), url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+    font-weight: 400;
+    font-style: normal
 }
 
 /*@font-face{*/
 /*font-family: IRANSans;*/
 /*src:url(fonts/IRANSanaWeb.woff2) format("woff2");*/
 /*}*/
+/*--------------------------------------------------------------page and navbar----------------------------------*/
+
+html {
+    zoom: 70%;
+} /*This can be used for any tag, id or class*/
+
+@viewport {
+    zoom: 0.7;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: iranyekan;
+}
 
 body {
     /*zoom: 90%;*/
@@ -29,8 +71,86 @@ body {
     /*font-style: normal;*/
     background-color: #eaeaea;
     color: rgba(41, 41, 41, 0.73);
+    font-family: iranyekan;
+    margin:5%;
 
 }
+
+.navbar {
+    /*background: #1766a0;*/
+    background: #1766a0;
+    border-bottom:3px solid #25e3fa;
+
+
+}
+.navbar   a {
+    color: white !important;
+    /*padding-right:100px;*/
+
+}
+
+.navbar   a:hover{
+    /*border-bottom: 3px solid #25e3fa;*/
+    background: #25e3fa;
+    border-radius: 5px;
+    color: black !important;
+
+}
+
+.navbar-toggler{
+    background-color: white;
+}
+
+.dropdown-menu{
+    background: #1766a0;
+    word-wrap: none;
+    text-align: right;
+    padding-right:10px;
+    /*color: #25e3fa;*/
+    border: 3px solid #25e3fa;
+    width: 300%;
+}
+.dropdown-divider{
+    color: #25e3fa !important;
+}
+.navbar-nav{
+    padding-right:100px;
+    /*margin : 50px;*/
+    /*color: #25e3fa;*/
+    /*text-align: right;*/
+    /*position : right;*/
+}
+
+.scroll-top{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 99;
+    background: #1766a0;
+    color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    font-weight: bold;
+    line-height: normal;
+    border: none;
+}
+.scroll-top:hover{
+    background: #25e3fa;
+    color: black !important;
+}
+
+.pic {
+    color: white !important;
+    direction: ltr;
+}
+
+.pic img {
+    background: #25e3fa;
+}
+
+/*--------------------------------------------------------------layout style----------------------------------*/
+/*------------------------------------------------------------main content style------------------------------*/
+
 .icon{
     font-size: 20px;
     color: #ffc900;

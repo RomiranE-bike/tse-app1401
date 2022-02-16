@@ -3,7 +3,7 @@
 <head>
   {% block head %}
 <!--# -*- coding: utf-8 -*- -->
-<!--edited on 1400/11/10  01/30/2022-->
+<!--edited on 1400/11/27  02/16/2022-->
 <!--@author: mahmoud esmaeili-->
 
   <meta charset="utf-8">
@@ -25,154 +25,155 @@
   <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
   <!------------------------------------------------bootstrap 5 data table ok---------->
 
-  <style>
-    @font-face {
-      font-family: iranyekan;
-      font-style: normal;
-      font-weight: 700;
-      src: url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/eot/iranyekanwebbold(fanum).eot");
-      src: url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/eot/iranyekanwebbold(fanum).eot?#iefix")
-      format("embedded-opentype"),
-      url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/woff2/iranyekanwebbold(fanum).woff2")
-      format("woff2"),
-      url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/woff/iranyekanwebbold(fanum).woff")
-      format("woff"),
-      url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/ttf/iranyekanwebbold(fanum).ttf")
-      format("truetype")
-    }
-
-    @font-face {
-      font-family: iranyekan;
-      font-style: normal;
-      font-weight: 400;
-      src: url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/eot/iranyekanwebregular(fanum).eot");
-      src: url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/eot/iranyekanwebregular(fanum).eot?#iefix") format("embedded-opentype"), url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/woff2/iranyekanwebregular(fanum).woff2") format("woff2"), url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/woff/iranyekanwebregular(fanum).woff") format("woff"), url("https://static.accessban.com/views/default/fonts/iranyekan/Farsi_numerals_(Non_Standard)/WebFonts/fonts/ttf/iranyekanwebregular(fanum).ttf") format("truetype")
-    }
-
-    @font-face {
-      font-family: fontawesome;
-      src: url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.eot");
-      src: url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3") format("embedded-opentype"), url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.woff") format("woff"), url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("https://static.accessban.com/views/default/css/font-awesome-4.5.0/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
-      font-weight: 400;
-      font-style: normal
-    }
-  </style>
-  <style>
-    body{
-      font-family: iranyekan;
-      margin:5%;
-    }
-    .navbar {
-      /*background: #1766a0;*/
-      background: #1766a0;
-      border-bottom:3px solid #25e3fa;
-
-
-    }
-    .navbar   a {
-      color: white !important;
-    }
-
-    .navbar   a:hover{
-      border-bottom: 3px solid #25e3fa;
-    }
-    .navbar-toggler{
-          background-color: white;
-          }
-    
-    .scroll-top{
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      z-index: 99;
-      background: #1766a0;
-      color: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      font-weight: bold;
-      line-height: normal;
-      border: none;
-    }
-
-    /*--------------------------------------------------------------
-# Back to top button
---------------------------------------------------------------*/
-    .back-to-top {
-      position: fixed;
-      visibility: hidden;
-      opacity: 0;
-      right: 15px;
-      bottom: 15px;
-      z-index: 996;
-      background: #0880e8;
-      width: 40px;
-      height: 40px;
-      border-radius: 50px;
-      transition: all 0.4s;
-    }
-    .back-to-top i {
-      font-size: 28px;
-      color: #fff;
-      line-height: 0;
-    }
-    .back-to-top:hover {
-      background: #2194f7;
-      color: #fff;
-    }
-    .back-to-top.active {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    /*--------------------------------------------------------------
-    # Preloader
-    --------------------------------------------------------------*/
-  </style>
-  <script>
-          /**
-       * Back to top button
-       */
-      function goTop(){
-          window.scrollTo(0, 0);
-      }
-
-  </script>
-
 <script>
- $('body').scrollspy({target:'#nav-scrooll'});
- $("#nav-scroll a").on('click',function(e){
-     if(this.hash !==''){
-         e.preventDefault();
-         const hash = this.hash;
-         $('html,body').animate({
-             scrollTop: $(hash).offset().top
-         },900,function(){
-             window.location.hash = hash;
-         }, 'slow';)
-     }
- })
+        /**
+     * Back to top button
+     */
+    function goTop(){
+        window.scrollTo(0, 0);
+    }
+
+</script>
+<script>
+$('body').scrollspy({target:'#nav-scrooll'});
+$("#nav-scroll a").on('click',function(e){
+   if(this.hash !==''){
+       e.preventDefault();
+       const hash = this.hash;
+       $('html,body').animate({
+           scrollTop: $(hash).offset().top
+       },900,function(){
+           window.location.hash = hash;
+       }, 'slow';)
+   }
+})
 </script>
 
-  <!--<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/font_fa.css') }}">-->
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/tse_app_style.css') }}">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/hero.css') }}">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/about.css') }}">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/footer.css') }}">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/clients.css') }}">
+  <!--<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/font_fa.css') }}">-->
   <!--<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/main.css') }}">-->
 
-  <title>{% block title %}{% endblock %} وب اپلیکیشن آنالیز بازار</title>
+  <title>{% block title %}{% endblock %}وب اپلیکیشن آنالیز بازار</title>
   {% endblock %}
 </head>
 
 
 <body id="home" data-spy="scroll" data-target="#nav-scroll">
+<!------------------------------------------------navbar fixed top------------------------------------------->
+<section id="nav_bar">
+<nav class="navbar transparent navbar-inverse navbar-expand-md navbar-light fixed-top" id="nav-scroll">
+    <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+    <div class="container-fluid">
+<!------------------------------------------------------------------------------->
+        <div class="logo logoMini ">
+            <img class="rounded-circle p-1" src="/static/img/logo-03.png" height="50" alt="Best Show">
+        </div>
+        <a class="navbar-brand justify-content-center" href="#">
+            <!--<img src="/static/img/logo-01.jpg" height="28" alt="داشبورد آنالیز بازار">-->
+            <!--<img class="rounded-circle p-1" src="/static/img/logo-03.png" height="50">-->
+            داشبورد آنالیز بازار
+        </a>
 
+<!------------------------------------------------------------------------------->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!----------------------------------------------------------------------------->
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+            <!--<ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+            <!--<ul class="navbar-nav ml-auto nav-flex-icons">-->
+            <!--<ul class="navbar-nav mr-auto ">-->
+            <ul class="navbar-nav">
+                <li>
+                    <a class="nav-link " href="{{url_for('market_view')}}" id="navbarDropdown">
+                         نمای بازارها
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        جدول ها
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a href="{{url_for('data_table')}}" class="nav-item nav-link">دیتای بازار</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="{{url_for('pe_table')}}" class="nav-item nav-link">نسبت قیمت به درآمد</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="{{url_for('hot_money_table')}}" class="nav-item nav-link">پول هوشمند</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="{{url_for('qeueu_table')}}" class="nav-item nav-link">صف خرید و فروش</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        چارت ها
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a href="{{url_for('neg_pos_chart')}}" class="nav-item nav-link">نماد های مثبت و منفی</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="{{url_for('best_co_chart')}}" class="nav-item nav-link">برترین های صنعت و گروه</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="{{url_for('hot_money_chart')}}" class="nav-item nav-link">پول هوشمند</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="{{url_for('pe_chart')}}" class="nav-item nav-link">نسبت قیمت به درآمد</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-link " href="{{url_for('filter')}}" id="navbarDropdown">
+                         فیلتر ها
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link " href="{{url_for('risk')}}" id="navbarDropdown">
+                         بیانیه ریسک
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link " href="{{url_for('about_us')}}" id="navbarDropdown">
+                         در باره ما
+                    </a>
+                </li>
+            </ul>
+        </div>
+<!-------------------------------------------------------------------------------------------------------->
+        <div class="pic p-1 pt-0 rounded-circle mb-0 ">
+            <img class="rounded-circle p-1" src="/static/img/freelancer-02.png" height="80" alt="profile_picture">
+            (freelancer)
+            محمود اسماعیلی
+             </div>
+        <!--<div class="p-4 pt-5">-->
+        <!--<a href="#" class="img logo rounded-circle mb-5"-->
+        <!--style="background-image: url(/static/img/user-avatar.png);"></a>-->
+        <!--<img src="/static/img/user-avatar.png" height="50" alt="profile_picture">-->
+        <!--<h3>محمود اسماعیلی</h3>-->
+        <!--<p>freelancer</p>-->
+        <!--</div>-->
+        <!---------------------------------------------------------------------------------------------->
+    </div>
+</nav>
+</section>
 <!-------------------------------------------------------------------------------------------------------->
 <div id="content" class="container main-container">
   {% block content %}
   {% endblock %}
 </div>
 <!-------------------------------------------------------------------------------------------------------->
+<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!-------------------------------------------------------swiper ok---------------------------------------->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.6/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.6/swiper-bundle.css">
+<script type="text/javascript" src="{{ url_for('static', filename='js/anyar.js') }}"></script>
 <!------------------------------------------javascript data table and chart ok---------------------------->
 <script type="text/javascript" src="{{ url_for('static', filename='js/data_table.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/neg_pos_number.js') }}"></script>
@@ -342,18 +343,111 @@
   </script>
 </section>
 <!---------------------------------------------------------------------------------------------------------->
-<footer>
-  <div id="footer" class="container text-center">
-    {% block footer %}
-    <!--&copy; Copyright 2021-2022 by mahmoud esmaeili-->
-    تمامی حقوق مادی و معنوی این وب اپلیکیشن متعلق به توسعه دهنده آن(محمود اسماعیلی) می باشد و هرگونه کپی برداری غیرقانونی محسوب خواهد شد
-    {% endblock %}
-  </div>
-</footer>
+<!--<footer>-->
+  <!--<div id="footer" class="container text-center">-->
+    <!--{% block footer %}-->
+    <!--تمامی حقوق مادی و معنوی این وب اپلیکیشن متعلق به توسعه دهنده آن(محمود اسماعیلی) می باشد و هرگونه کپی برداری غیرقانونی محسوب خواهد شد.-->
+    <!--{% endblock %}-->
+  <!--</div>-->
+<!--</footer>-->
 <!--<button type="button" class="scroll-top" onclick="goTop();">بازگشت <i class="bi-arrow-up-circle-fill"></i></button>-->
 <button id="myBtn" type="button" class="btn btn-outline-success scroll-top" onclick="goTop();">بازگشت
        <i class="bi-arrow-up-circle-fill"></i></button>
 
 <!---------------------------------------------------------------------------------------------------------->
+
+<footer id="footer">
+
+  <!--<div class="footer-newsletter">-->
+    <!--<div class="container">-->
+      <!--<div class="row">-->
+        <!--<div class="col-lg-6">-->
+          <!--<h4>بروز رسانی</h4>-->
+          <!--<p> لطفا برای دسترسی به آخرین بروز رسانی ها پست الکترونیک خود را وارد نمایید.</p>-->
+        <!--</div>-->
+        <!--<div class="col-lg-6">-->
+          <!--<form action="" method="post">-->
+            <!--<input type="email" name="email"><input type="submit" value="تایید">-->
+          <!--</form>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-sm-12 col-md-6 col-lg-3 footer-links">
+          <h4>پیوند ها: </h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">بورس</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">فرابورس</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">کدال</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">کارگزاری مفید</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">سپرده گذاری مرکزی</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3 footer-links">
+          <h4>علاقه مندی ها</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">طراحی وب</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">توسعه نرم افزار</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">تولید محصول</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">مالی</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#" class="text">برنامه نویسی</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3 footer-contact">
+          <h4>ارتباط با ما: </h4>
+          <p>
+            ایران <br>
+            مازندران<br>
+            <br><br>
+            <strong><i class="bi bi-phone phone-icon " ></i>  </strong> 1626 323 911 98+<br>
+            <strong><i class="bi bi-envelope " ></i></strong> mahmoudesmaeili99@gmail.com<br>
+          </p>
+
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3 footer-info">
+          <h3> </h3>
+          <p></p>
+          <div class="social-links mt-3">
+              <a href=""><span class="iconify" data-icon="logos:telegram"></span></a>
+              <a href=""><span class="iconify" data-icon="logos:whatsapp"></span></span></a>
+              <a href=""><span class="iconify" data-icon="ri:twitter-fill"></span></a>
+              <a href=""><span class="iconify" data-icon="ri:instagram-fill"
+                               style="color: #d35349;"></span></a>
+              <a href=""><span class="iconify" data-icon="el:facebook"></span></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+      <div class="copyright">
+          تمامی حقوق مادی و معنوی این وب اپلیکیشن
+          متعلق به توسعه دهنده آن(محمود اسماعیلی) می باشد
+          و هرگونه کپی برداری غیرقانونی محسوب خواهد شد.
+      </div>
+    <div class="copyright">
+      &copy; Copyright <strong><span></span></strong> All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/anyar-free-multipurpose-one-page-bootstrap-theme/ -->
+      Powered by <a href="#">Bootstrap</a>
+
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
 </body>
 </html>

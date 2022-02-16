@@ -154,3 +154,15 @@ group_hotmoney_items = dict(
 # print(group_hotmoney_items.get('group_hotmoney_list')[0][5].get('hot_money'))
 
 # ----------------------------------------------------------------------------
+# import os
+# from winsound import Beep
+# import time
+# import datetime
+#
+# # time.sleep(1)
+# Beep(2000,100)
+# print('hot_money_data:executed.')
+#
+# t = datetime.datetime.now()
+# print(t.minute,':', t.second,':',str(t.microsecond)[:2])
+# ---------------------------------------------------------------------------------------------------------

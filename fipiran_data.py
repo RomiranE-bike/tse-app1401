@@ -1,6 +1,6 @@
 # # -*- coding: utf-8 -*-
 # """
-# Created on 1400/10/06 ---- 12/27/2021
+# Created on 1400/11/27 ---- 02/16/2021
 #
 # @author: mahmoud esmaeili
 # """
@@ -92,6 +92,16 @@ fara_bourse_status=dict(
 # print(bourse_status)
 # print(fara_bourse_status)
 # --------------------------------------------------------------------------------
-
+# import os
+# from winsound import Beep
+# import time
+# import datetime
+#
+# # time.sleep(1)
+# Beep(2000,100)
+# print('fipiran_data:executed.')
+#
+# t = datetime.datetime.now()
+# print(t.minute,':', t.second,':',str(t.microsecond)[:2])
 
 

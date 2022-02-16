@@ -1,0 +1,144 @@
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.section-bg {
+  background-color: #f1f8ff;
+}
+
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+.section-title h2 {
+  font-size: 1rem;
+  /*font-weight: bold;*/
+  /*text-transform: uppercase;*/
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  color: #054a85;
+}
+.section-title p {
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/*--------------------------------------------------------------
+# Icon Boxes
+--------------------------------------------------------------*/
+.icon-boxes {
+  padding-top: 0;
+  position: relative;
+  z-index: 100;
+}
+.icon-boxes .icon-box {
+  padding: 40px 30px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 5px 10px 29px 0 rgba(68, 88, 144, 0.2);
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+}
+.icon-boxes .icon {
+  margin: 0 auto 20px auto;
+  display: inline-block;
+  text-align: center;
+}
+.icon-boxes .icon i {
+  font-size: 36px;
+  line-height: 1;
+  color: #f6b024;
+}
+.icon-boxes .title {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+.icon-boxes .title a  {
+  color: #05579e;
+  font-size: 1rem;
+}
+.icon-boxes .description {
+  font-size: 15px;
+  line-height: 28px;
+  margin-bottom: 0;
+  color: #777777;
+}
+
+/*# About Us*/
+/*--------------------------------------------------------------*!*/
+.about {
+  padding: 140px 0;
+  /*background: url("../img/about-bg.png") top center no-repeat;*/
+  position: relative;
+}
+.about:before {
+  content: "";
+  /*background: rgba(255, 255, 255, 0.75);*/
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.about .container {
+  position: relative;
+}
+.about .content h3 {
+  font-weight: 600;
+  font-size: 26px;
+}
+.about .content ul {
+  list-style: none;
+  padding: 0;
+}
+.about .content ul li {
+  padding-left: 28px;
+  position: relative;
+}
+.about .content ul li + li {
+  margin-top: 10px;
+}
+.about .content ul i {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 20px;
+  color: #0880e8;
+  line-height: 1;
+}
+.about .content p:last-child {
+  margin-bottom: 0;
+}
+.about .content .btn-learn-more {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 5px;
+  transition: 0.3s;
+  line-height: 1;
+  color: #0880e8;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  margin-top: 6px;
+  border: 2px solid #0880e8;
+}
+.about .content .btn-learn-more:hover {
+  background: #0880e8;
+  color: #fff;
+  text-decoration: none;
+}
+@media (max-width: 992px) {
+  .about {
+    padding: 60px 0;
+  }
+}

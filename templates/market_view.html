@@ -1,6 +1,6 @@
  <!-- -*- coding: utf-8 -*- -->
 
-<!--edited on 1400/11/14  02/03/2022-->
+<!--edited on 1400/11/26  02/15/2022-->
 
 <!--@author: mahmoud esmaeili-->
 
@@ -9,45 +9,7 @@
 {% block content %}
 
 <div class="market_view">
-<!------------------------------------------------navbar fixed top------------------------------------------->
-<section id="nav_bar">
-<!--<nav class="navbar navbar-default visible-xs">-->
-<!--<div class="container" >-->
-<!--<div class="col-sm-12">-->
 
-<!--<nav class="navbar fixed-top navbar-expand-lg ">-->
-<nav class="navbar transparent navbar-inverse navbar-expand-md navbar-light fixed-top" id="nav-scroll" style="direction:rtl;">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brand px-5">داشبورد آنالیز بازار</a>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav mr-auto px-5">
-
-                <a href="{{url_for('market_view')}}" class="nav-item nav-link"> نمای بازارها</a>
-                <a href="{{url_for('data_table')}}" class="nav-item nav-link">دیتای بازار</a>
-                <a href="{{url_for('pe_table')}}" class="nav-item nav-link">نسبت قیمت به درآمد (جدول)</a>
-                <a href="{{url_for('hot_money_table')}}" class="nav-item nav-link">پول هوشمند (جدول)</a>
-
-                <a href="{{url_for('neg_pos_chart')}}" class="nav-item nav-link">نماد های مثبت و منفی (چارت)</a>
-                <a href="{{url_for('best_co_chart')}}" class="nav-item nav-link">برترین های صنعت و گروه (چارت)</a>
-                <a href="{{url_for('hot_money_chart')}}" class="nav-item nav-link">پول هوشمند (چارت)</a>
-                <a href="{{url_for('pe_chart')}}" class="nav-item nav-link">نسبت قیمت به درآمد (چارت)</a>
-
-
-            </div>
-            <!--<form class="d-flex ms-auto">-->
-                <!--<input type="text" class="form-control me-sm-2" placeholder="Search">-->
-                <!--<button type="submit" class="btn btn-outline-primary">Search</button>-->
-            <!--</form>-->
-        </div>
-    </div>
-</nav>
-<!--</div>-->
-<!--</div>-->
-<!--</nav>-->
-</section>
 <!---------------------------------for create left side navbar if you want!---------------------------------->
 <div class="container" >
     <div class="row content">
@@ -62,7 +24,7 @@
 <section id="selected-index">
     <div id='last_market_view' class="row text-center"><h4> شاخص های منتخب:</h4>
         <h6> آخرین بروز رسانی:
-            {{last_market_view}}</h6>
+            {{last_update}}</h6>
         <div class ="col-sm-6 col-md-6 col-lg-2">
             <div class="card top-card">
                 <div class="card-header text-center"> کل بورس</div>
@@ -318,11 +280,11 @@
                         <td id="dollar-color" class="number">
                             {{tgju_list[0][4]}} <i id="dollar-caret"></i></td>
                     </tr>
-                    <tr>
-                        <td>
+                    <!--<tr>-->
+                        <!--<td>-->
                             <!--<a href="https://www.tgju.org/profile/price_dollar_rl" target="_blank">نمایش بیشتر!</a>-->
-                        </td>
-                    </tr>
+                        <!--</td>-->
+                    <!--</tr>-->
                     </tbody>
                 </table>
                 <script>
@@ -374,11 +336,11 @@
                         <td id="nima-color" class="number">
                             {{tgju_list[1][4]}} <i id="nima-caret"></i></td>
                     </tr>
-                    <tr>
-                        <td>
+                    <!--<tr>-->
+                        <!--<td>-->
                             <!--<a href="https://www.tgju.org/profile/nima_sell_usd" target="_blank">نمایش بیشتر!</a>-->
-                        </td>
-                    </tr>
+                        <!--</td>-->
+                    <!--</tr>-->
                     </tbody>
                 </table>
                 <script>
@@ -430,11 +392,11 @@
                             {{tgju_list[2][4]}}
                             <i id="bit-caret"></i></td>
                     </tr>
-                    <tr>
-                        <td>
+                    <!--<tr>-->
+                        <!--<td>-->
                             <!--<a href="https://www.tgju.org/profile/crypto-bitcoin" target="_blank">نمایش بیشتر!</a>-->
-                        </td>
-                    </tr>
+                        <!--</td>-->
+                    <!--</tr>-->
                     </tbody>
                 </table>
                 <script>
@@ -488,11 +450,11 @@
                             {{tgju_list[3][4]}}
                             <i id="ether-caret"></i></td>
                     </tr>
-                    <tr>
-                        <td>
+                    <!--<tr>-->
+                        <!--<td>-->
                             <!--<a href="https://www.tgju.org/profile/crypto-ethereum" target="_blank">نمایش بیشتر!</a>-->
-                        </td>
-                    </tr>
+                        <!--</td>-->
+                    <!--</tr>-->
                     </tbody>
                 </table>
                 <script>
@@ -550,11 +512,11 @@
                                 {{tgju_list[4][4]}}
                                 <i id="ons-caret"></i></td>
                         </tr>
-                        <tr>
-                            <td>
+                        <!--<tr>-->
+                            <!--<td>-->
                                 <!--<a href="https://www.tgju.org/profile/ons" target="_blank">نمایش بیشتر!</a>-->
-                            </td>
-                        </tr>
+                            <!--</td>-->
+                        <!--</tr>-->
                         </tbody>
                     </table>
                     <script>
@@ -607,11 +569,11 @@
                                 {{tgju_list[5][4]}}
                                 <i id="wti-caret"></i></td>
                         </tr>
-                        <tr>
-                            <td>
+                        <!--<tr>-->
+                            <!--<td>-->
                                 <!--<a href="https://www.tgju.org/profile/energy-crude-oil" target="_blank">نمایش بیشتر!</a>-->
-                            </td>
-                        </tr>
+                            <!--</td>-->
+                        <!--</tr>-->
                         </tbody>
                     </table>
                     <script>
@@ -663,11 +625,11 @@
                                 {{tgju_list[6][4]}}
                                 <i id="brent-caret"></i></td>
                         </tr>
-                        <tr>
-                            <td>
+                        <!--<tr>-->
+                            <!--<td>-->
                                 <!--<a href="https://www.tgju.org/profile/energy-brent-oil" target="_blank">نمایش بیشتر!</a>-->
-                            </td>
-                        </tr>
+                            <!--</td>-->
+                        <!--</tr>-->
                         </tbody>
                     </table>
                     <script>
