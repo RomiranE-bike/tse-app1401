@@ -49,7 +49,7 @@ root{
 /*--------------------------------------------------------------page and navbar----------------------------------*/
 
 html {
-    zoom: 70%;
+    zoom: 90%;
 } /*This can be used for any tag, id or class*/
 
 @viewport {
